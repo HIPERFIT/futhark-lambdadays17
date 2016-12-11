@@ -245,7 +245,7 @@ runtimes/sgemm-parboil.runtimes:
 	@mkdir -p runtimes
 	(cd $(PARBOIL_LOCATION); \
 	for i in `seq $(RUNS)`; do \
-	 ./parboil run sgemm cuda medium | awk '/^Kernel/{print int($$3*1000000)}'; \
+	 ./parboil run sgemm opencl_nvidia medium | awk '/^Kernel/{print int($$3*1000000)}'; \
         done) > $@
 
 runtimes/sgemm-futhark.runtimes:
