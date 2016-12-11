@@ -16,7 +16,6 @@ rodinia_programs = [("Backprop", "backprop"),
                     ("K-means", "kmeans"),
                     ("LavaMD", "lavaMD"),
                     ("Myocyte", "myocyte"),
-                    ("NN", "nn"),
                     ("Pathfinder", "pathfinder"),
                     ("SRAD", "srad")]
 
@@ -28,7 +27,9 @@ accelerate_programs = [("Crystal", "crystal"),
 finpar_programs = [("LocVolCalib", "LocVolCalib_large"),
                    ("OptionPricing", "OptionPricing_large")]
 
-parboil_programs = [("MRI-Q", "mri-q")]
+parboil_programs = [("MRI-Q", "mri-q"),
+                    ("SGEMM", "sgemm"),
+                    ("TPACF", "tpacf")]
 
 def ref_filename_closure(ref):
     return lambda d, filename: os.path.join(d, filename + '-' + ref + '.avgtime')
