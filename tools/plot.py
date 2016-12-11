@@ -97,8 +97,8 @@ for t in ax.get_xticklabels( ):
     else:
         stagger = 0
 
-rects = ax.bar(ind, program_speedups, width, color='#2255ee', zorder=3, edgecolor='white', label='GTX 780')
-aux_rects = ax.bar(ind+width, program_aux_speedups, width, color='#ee5500', zorder=3, edgecolor='white', label='W8100')
+rects = ax.bar(ind, program_speedups, width, color='#2255ee', zorder=3, edgecolor='white', label='NVIDIA Tesla K40')
+aux_rects = ax.bar(ind+width, program_aux_speedups, width, color='#ee5500', zorder=3, edgecolor='white', label='AMD W8100')
 
 def label_rect(rect):
     height = rect.get_height()

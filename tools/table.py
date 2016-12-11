@@ -61,7 +61,7 @@ to_table = list(map(table_info_closure(ref_filename_closure('rodinia')), rodinia
 
 print(r'''
 \begin{tabular}{lrrrr}
-& \multicolumn{2}{c}{\textbf{NVIDIA GTX780}} & \multicolumn{2}{c}{\textbf{AMD W8100}} \\
+& \multicolumn{2}{c}{\textbf{NVIDIA Tesla K40}} & \multicolumn{2}{c}{\textbf{AMD W8100}} \\
 \textbf{Benchmark} & \textbf{Ref.} & \textbf{Futhark} & \textbf{Ref.} & \textbf{Futhark}\\
 ''')
 
