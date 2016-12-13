@@ -44,29 +44,29 @@ def get_avgtimes(d, ref_filename, filename):
                     '%.1f' % float(fut_f.read()))
 
 
-def table_info_closure(ref_filename):
+def table_info_closure(suite, ref_filename):
     def table_info(x):
         name, filename = x
         (ref_avgtime, fut_avgtime) = get_avgtimes('runtimes', ref_filename, filename)
         try:
             (aux_ref_avgtime, aux_fut_avgtime) = get_avgtimes('aux_runtimes', ref_filename, filename)
-            return (name, ref_avgtime, fut_avgtime, aux_ref_avgtime, aux_fut_avgtime)
+            return (name, suite, ref_avgtime, fut_avgtime, aux_ref_avgtime, aux_fut_avgtime)
         except:
-            return (name, ref_avgtime, fut_avgtime, '---', '---')
+            return (name, suite, ref_avgtime, fut_avgtime, '---', '---')
     return table_info
 
-to_table = list(map(table_info_closure(ref_filename_closure('rodinia')), rodinia_programs) +
-                map(table_info_closure(ref_filename_closure('finpar')), finpar_programs) +
-                map(table_info_closure(ref_filename_closure('parboil')), parboil_programs) +
-                map(table_info_closure(ref_filename_closure('accelerate')), accelerate_programs))
+to_table = list(map(table_info_closure('Rodinia', ref_filename_closure('rodinia')), rodinia_programs) +
+                map(table_info_closure('FinPar', ref_filename_closure('finpar')), finpar_programs) +
+                map(table_info_closure('Parboil', ref_filename_closure('parboil')), parboil_programs) +
+                map(table_info_closure('Accelerate', ref_filename_closure('accelerate')), accelerate_programs))
 
 print(r'''
-\begin{tabular}{lrrrr}
-& \multicolumn{2}{c}{\textbf{NVIDIA Tesla K40}} & \multicolumn{2}{c}{\textbf{AMD W8100}} \\
-\textbf{Benchmark} & \textbf{Ref.} & \textbf{Futhark} & \textbf{Ref.} & \textbf{Futhark}\\
+\begin{tabular}{llrrrr}
+& & \multicolumn{2}{c}{\textbf{NVIDIA Tesla K40}} & \multicolumn{2}{c}{\textbf{AMD W8100}} \\
+\textbf{Benchmark} & \textbf{Suite} & \textbf{Ref.} & \textbf{Futhark} & \textbf{Ref.} & \textbf{Futhark}\\
 ''')
 
 for row in to_table:
-    print(r'''%s & %s & %s & %s & %s \\''' % row)
+    print(r'''%s & %s & %s & %s & %s & %s \\''' % row)
 
 print(r'''\end{tabular}''')
